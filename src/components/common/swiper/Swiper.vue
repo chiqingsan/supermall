@@ -33,9 +33,7 @@ export default {
 
     },
   },
-  computed: {
-
-  },
+  computed: {},
   mounted() {
 
     const swiper = document.getElementById("swiper")
@@ -44,7 +42,12 @@ export default {
 
       this.itemindex += 1
 
+      if (this.itemindex >= this.banners.length+1) {
+        this.itemindex = 1
+      }
+
       const timer2 = setInterval(() => {
+
         this.swiperleft -= 2
         swiper.style.left = this.swiperleft + "vw"
 
@@ -52,20 +55,22 @@ export default {
 
           clearInterval(timer2)
 
-          if (this.itemindex === 5) {
-            this.itemindex = 1
+          if (this.swiperleft <= -(this.banners.length+1)*100) {
             swiper.style.left = -100 + "vw"
             this.swiperleft = -100
           }
         }
       }, 10)
 
+
     }, 3000)
 
   },
   beforeUpdate() {
-    this.banner.push(this.banners[0].image)
-    this.banner.push(this.banners[this.banners.length-1].image)
+    if (this.banner.length <= 1){
+      this.banner.push(this.banners[0].image)
+      this.banner.push(this.banners[this.banners.length - 1].image)
+    }
   }
 
 }
@@ -73,8 +78,6 @@ export default {
 </script>
 
 <style lang="less">
-
-
 
 
 #swiper {
@@ -89,10 +92,8 @@ export default {
 }
 
 #nav_swiper {
-  position: absolute;
   overflow: hidden;
-
-
+  background: #ffffff;
   ul {
     width: 100vw;
     position: relative;
@@ -117,7 +118,7 @@ export default {
 
 }
 
-#nav_swiper>ul>.licolor {
+#nav_swiper > ul > .licolor {
   background-color: #FF8E96;
 }
 </style>

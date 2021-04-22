@@ -1,14 +1,13 @@
 <template>
-  <div>
+  <div @click="test">
     <navbar id="home_navbar">
       <template v-slot:center>
         <div>购物街</div>
       </template>
-
     </navbar>
+    <Swiper :banners="banners"></Swiper>
+    <childrenComps :imglink="recommends"></childrenComps>
 
-    <Swiper :banners="banners">
-    </Swiper>
   </div>
 </template>
 
@@ -16,6 +15,7 @@
 import navbar from "@/components/common/navbar/NavBar"
 import {getHomeMultidata} from "@/network/home"
 import Swiper from "@/components/common/swiper/Swiper"
+import childrenComps from "./Homechildren/childrenComps/childrenComps"
 
 export default {
   name: "Home",
@@ -28,8 +28,13 @@ export default {
   components: {
     navbar,
     Swiper,
+    childrenComps,
   },
-  methods: {},
+  methods: {
+    test() {
+      console.log(this.recommends)
+    }
+  },
   computed: {},
   created() {
     getHomeMultidata().then((res) => {
