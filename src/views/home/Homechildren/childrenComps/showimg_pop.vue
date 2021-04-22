@@ -1,5 +1,5 @@
 <template>
-  <div @click="test" class="show_pop">
+  <div class="show_pop">
     <div v-for="item in showimgpoplist" class="show_pop_item">
       <img :src="item.show.img" :alt="item.title">
       <span class="shop_name">{{ item.title }}</span>
@@ -21,9 +21,6 @@ export default {
     return {}
   },
   methods: {
-    test() {
-      console.log(this.showimgpoplist)
-    }
   },
   props: {
     showimgpoplist: {}
