@@ -23,9 +23,14 @@ export default {
   width: 100%;
   height: 10vw;
   display: flex;
-  box-shadow: 0 2px 7px rgba(100, 100, 100, 0.3);
+  box-shadow: 0 1px 5px rgba(100, 100, 100, 0.3);
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
 
 }
 

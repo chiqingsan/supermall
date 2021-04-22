@@ -98,16 +98,18 @@ export default {
     width: 100vw;
     position: relative;
     display: flex;
-    bottom: 7vw;
+    bottom: 5vw;
     justify-content: center;
 
     li {
       list-style: none;
       width: 3vw;
       height: 3vw;
-      background-color: rgba(100, 100, 100, .7);
+      background-color: rgba(187, 187, 187, 0.7);
       margin-left: 3vw;
       border-radius: 50%;
+      box-shadow: 0 1px 2px rgba(111, 110, 110, 0.3);
+
     }
 
     li:first-child {
@@ -119,6 +121,6 @@ export default {
 }
 
 #nav_swiper > ul > .licolor {
-  background-color: #FF8E96;
+  background-color: #f85b65;
 }
 </style>

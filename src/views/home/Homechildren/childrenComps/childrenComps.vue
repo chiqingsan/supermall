@@ -35,6 +35,7 @@ export default {
       height: 20vw;
     }
     p{
+      font-size: 4vw;
       margin-top: 2vw;
       margin-bottom: 8vw;
       text-align: center;
