@@ -5,9 +5,14 @@
         <div>购物街</div>
       </template>
     </navbar>
-    <Scroll class="content" ref="scroll" :probeType="3" @backtopy="backtopy">
+    <Scroll class="content"
+            ref="scroll"
+            :probeType="3"
+            @backtopy="backtopy"
+            @pullup="pullup"
+    >
 
-      <Swiper :banners="banners" ></Swiper>
+      <Swiper :banners="banners"></Swiper>
 
       <childrenComps :imglink="recommends"></childrenComps>
 
@@ -51,7 +56,8 @@ export default {
         "new": {page: 0, list: []},
         "sell": {page: 0, list: []},
       },
-      topshow:false
+      topshow: false,
+      controlindex: 1
     }
   },
   components: {
@@ -91,6 +97,7 @@ export default {
       this.topshow = res.y < -1000
     },
 
+
     // 网络请求相关
 
     getHomeMultidata() {
@@ -105,6 +112,23 @@ export default {
         this.goods[type].list.push(...(res.data.data.list))
         this.goods[type].page += 1
       })
+    },
+
+    //实现上拉加载更多
+    pullup() {
+      new Promise((resolve,reject) => {
+        setTimeout(() => {
+          this.getHomeGoods(this.goodsname)
+        }, 300)
+        resolve()
+      }).then(() => {
+
+        //刷新 scroll计算高度 解决滑动卡死的bug
+       this.$refs.scroll.scroll.refresh()
+      })
+
+      // 激活下一次下拉刷新
+      this.$refs.scroll.scroll.finishPullUp()
     },
 
   },

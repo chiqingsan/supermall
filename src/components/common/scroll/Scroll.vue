@@ -9,12 +9,14 @@
 <script>
 import BScroll from '@better-scroll/core'
 import MouseWheel from '@better-scroll/mouse-wheel'
-// import Pullup from '@better-scroll/pull-up'
+import Pullup from '@better-scroll/pull-up'
 import ObserveDOM from '@better-scroll/observe-dom'
+
+import {getHomeGoods} from "@/network/home"
 
 
 BScroll.use(MouseWheel)
-// BScroll.use(Pullup)
+BScroll.use(Pullup)
 BScroll.use(ObserveDOM)
 
 export default {
@@ -25,32 +27,37 @@ export default {
     }
   },
   props: {
-    probeType:{
-      type:Number,
-      default:0
+    probeType: {
+      type: Number,
+      default: 0
     }
   },
   mounted() {
 
     this.scroll = new BScroll(this.$refs.wrapper, {
-      mouseWheel: true,
+      mouseWheel: {
+        speed: 16,
+        invert: false,
+        easeTime: 300,
+        discreteTime: 400,
+        throttleTime: 0,
+        dampingFactor: 0.1
+      },
       probeType: this.probeType,
       observeDOM: true,
       click: true,
+      pullUpLoad: true
 
     })
 
-
-    //   pullUpLoad: true
-    // })
-    //
     this.scroll.on("scroll", (position) => {
       this.$emit("backtopy", position)
     })
-    //
-    // this.scroll.on('pullingUp', () => {
-    //   console.log('上拉加载更多')
-    // })
+
+
+    this.scroll.on('pullingUp', () => {
+      this.$emit("pullup")
+    })
 
   },
   methods: {
