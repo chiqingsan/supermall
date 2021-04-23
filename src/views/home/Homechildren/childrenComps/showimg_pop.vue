@@ -32,14 +32,15 @@ export default {
 .show_pop {
 
   display: flex;
+  //flex-direction: column;
   flex-wrap: wrap;
   width: 100vw;
   justify-content: space-evenly;
-  align-content: center;
   background-image: linear-gradient(#f5f5f5, #eeeeee);
 
   .show_pop_item {
     width: 46vw;
+    //height: 100%;
     background: #ffffff;
     margin-top: 2vw;
     border-radius: 4%;

@@ -98,6 +98,7 @@ export default {
 <style lang="less">
 #home {
   padding-top: 10vw;
+  width: 100vw;
 }
 
 #home_navbar {
