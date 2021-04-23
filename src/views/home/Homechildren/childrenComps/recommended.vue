@@ -19,9 +19,5 @@ export default {
   img {
     width: 100vw;
   }
-  a{
-    text-decoration: none;
-    display: block;
-  }
 }
 </style>
